@@ -50,7 +50,7 @@ _$PokemonDataImpl _$$PokemonDataImplFromJson(Map<String, dynamic> json) =>
           : Sprites.fromJson(json['sprites'] as Map<String, dynamic>),
       height: (json['height'] as num?)?.toInt(),
       weight: (json['weight'] as num?)?.toInt(),
-      baseExperience: (json['baseExperience'] as num?)?.toInt(),
+      baseExperience: (json['base_experience'] as num?)?.toInt(),
       stats: (json['stats'] as List<dynamic>?)
           ?.map((e) => Stats.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -65,7 +65,7 @@ Map<String, dynamic> _$$PokemonDataImplToJson(_$PokemonDataImpl instance) =>
       'sprites': instance.sprites,
       'height': instance.height,
       'weight': instance.weight,
-      'baseExperience': instance.baseExperience,
+      'base_experience': instance.baseExperience,
       'stats': instance.stats,
       'types': instance.types,
     };

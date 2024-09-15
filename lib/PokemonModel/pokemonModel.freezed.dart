@@ -415,6 +415,7 @@ mixin _$PokemonData {
   Sprites? get sprites => throw _privateConstructorUsedError;
   int? get height => throw _privateConstructorUsedError;
   int? get weight => throw _privateConstructorUsedError;
+  @JsonKey(name: 'base_experience')
   int? get baseExperience => throw _privateConstructorUsedError;
   List<Stats>? get stats => throw _privateConstructorUsedError;
   List<Types>? get types => throw _privateConstructorUsedError;
@@ -440,7 +441,7 @@ abstract class $PokemonDataCopyWith<$Res> {
       Sprites? sprites,
       int? height,
       int? weight,
-      int? baseExperience,
+      @JsonKey(name: 'base_experience') int? baseExperience,
       List<Stats>? stats,
       List<Types>? types});
 
@@ -545,7 +546,7 @@ abstract class _$$PokemonDataImplCopyWith<$Res>
       Sprites? sprites,
       int? height,
       int? weight,
-      int? baseExperience,
+      @JsonKey(name: 'base_experience') int? baseExperience,
       List<Stats>? stats,
       List<Types>? types});
 
@@ -617,7 +618,7 @@ class _$PokemonDataImpl implements _PokemonData {
       this.sprites,
       this.height,
       this.weight,
-      this.baseExperience,
+      @JsonKey(name: 'base_experience') this.baseExperience,
       final List<Stats>? stats,
       final List<Types>? types})
       : _stats = stats,
@@ -635,6 +636,7 @@ class _$PokemonDataImpl implements _PokemonData {
   @override
   final int? weight;
   @override
+  @JsonKey(name: 'base_experience')
   final int? baseExperience;
   final List<Stats>? _stats;
   @override
@@ -710,7 +712,7 @@ abstract class _PokemonData implements PokemonData {
       final Sprites? sprites,
       final int? height,
       final int? weight,
-      final int? baseExperience,
+      @JsonKey(name: 'base_experience') final int? baseExperience,
       final List<Stats>? stats,
       final List<Types>? types}) = _$PokemonDataImpl;
 
@@ -726,6 +728,7 @@ abstract class _PokemonData implements PokemonData {
   @override
   int? get weight;
   @override
+  @JsonKey(name: 'base_experience')
   int? get baseExperience;
   @override
   List<Stats>? get stats;

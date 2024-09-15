@@ -34,7 +34,7 @@ class PokemonData with _$PokemonData {
     Sprites? sprites,
     int? height,
     int? weight,
-    int? baseExperience,
+    @JsonKey(name: 'base_experience') int? baseExperience,
     List<Stats>? stats,
     List<Types>? types,
   }) = _PokemonData;
