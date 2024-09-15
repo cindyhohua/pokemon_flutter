@@ -5,10 +5,12 @@ import 'pokemonModel.dart';
 import 'pokemonCell.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,12 +18,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: PokemonListPage(),
+      home: const PokemonListPage(),
     );
   }
 }
 
 class PokemonListPage extends StatefulWidget {
+  const PokemonListPage({super.key});
+
   @override
   _PokemonListPageState createState() => _PokemonListPageState();
 }
@@ -77,19 +81,19 @@ class _PokemonListPageState extends State<PokemonListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pokédex'),
-        titleTextStyle: TextStyle(
+        title: const Text('Pokédex'),
+        titleTextStyle: const TextStyle(
             color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
         backgroundColor: Colors.red,
       ),
       backgroundColor: Colors.black, 
       body: _isLoading && _pokemonList.isEmpty
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
            : Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: GridView.builder(
               controller: _scrollController, 
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2, 
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
@@ -98,7 +102,7 @@ class _PokemonListPageState extends State<PokemonListPage> {
               itemCount: _pokemonList.length + 1, // +1 for the loading indicator
               itemBuilder: (context, index) {
                 if (index == _pokemonList.length) {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 }
 
                 final pokemon = _pokemonList[index];

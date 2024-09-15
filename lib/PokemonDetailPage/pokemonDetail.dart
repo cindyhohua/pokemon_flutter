@@ -8,7 +8,7 @@ import '../PokemonDetailPage/pokemonBaseStats.dart';
 class PokemonDetailPage extends StatefulWidget {
   final String name;
 
-  PokemonDetailPage({required this.name});
+  const PokemonDetailPage({super.key, required this.name});
 
   @override
   _PokemonDetailPageState createState() => _PokemonDetailPageState();
@@ -39,7 +39,7 @@ class _PokemonDetailPageState extends State<PokemonDetailPage> {
       appBar: AppBar(
         title: Text(
           widget.name.toUpperCase(),
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontSize: 25,
             fontWeight: FontWeight.bold,
@@ -52,7 +52,7 @@ class _PokemonDetailPageState extends State<PokemonDetailPage> {
         future: _pokemonData,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.hasError) {
@@ -85,7 +85,7 @@ class _PokemonDetailPageState extends State<PokemonDetailPage> {
               ),
             );
           } else {
-            return Center(
+            return const Center(
               child: Text('No data available'),
             );
           }

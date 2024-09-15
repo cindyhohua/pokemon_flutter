@@ -15,7 +15,7 @@ class PokemonService {
       });
 
       return PokemonListResponse.fromJson(response.data);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw Exception('Failed to load Pokémon list: ${e.message}');
     }
   }
@@ -25,7 +25,7 @@ Future<PokemonData> getPokemon({required String pokemon}) async {
     final response = await _dio.get('pokemon/$pokemon');
     
     return PokemonData.fromJson(response.data);
-  } on DioError catch (e) {
+  } on DioException catch (e) {
     throw Exception('無法取得寶可夢: ${e.message}');
   }
 }
@@ -38,7 +38,7 @@ Future<PokemonData> getPokemon({required String pokemon}) async {
       });
 
       return PokemonListResponse.fromJson(response.data);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw Exception('Failed to load Pokémon region list: ${e.message}');
     }
   }
@@ -48,7 +48,7 @@ Future<PokemonData> getPokemon({required String pokemon}) async {
       final response = await _dio.get('berry/$berryId');  // Correct the URL with berryId
 
       return PokemonBerry.fromJson(response.data);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw Exception('Failed to load Pokémon berry: ${e.message}');
     }
   }

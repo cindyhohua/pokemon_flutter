@@ -7,7 +7,7 @@ class PokemonInfo extends StatelessWidget {
   final double weight;
   final double height;
 
-  PokemonInfo({
+  const PokemonInfo({super.key, 
     required this.name,
     required this.type1,
     required this.type2,
@@ -24,7 +24,7 @@ class PokemonInfo extends StatelessWidget {
         children: [
           Text(
             name,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -35,12 +35,12 @@ class PokemonInfo extends StatelessWidget {
             children: [
               _buildTypeChip(type1),
               if (type2.isNotEmpty) ...[
-                SizedBox(width: 8),
+                const SizedBox(width: 8),
                 _buildTypeChip(type2),
               ],
             ],
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -57,12 +57,12 @@ class PokemonInfo extends StatelessWidget {
     return Chip(
       label: Text(
         type,
-        style: TextStyle(color: Colors.white),
+        style: const TextStyle(color: Colors.white),
       ),
       backgroundColor: _getTypeColor(type),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30),
-        side: BorderSide(color: Colors.black, width: 1),
+        side: const BorderSide(color: Colors.black, width: 1),
       ),
     );
   }
@@ -70,8 +70,8 @@ class PokemonInfo extends StatelessWidget {
   Widget _buildInfoText(String label, String value) {
     return Column(
       children: [
-        Text(label, style: TextStyle(color: Colors.grey)),
-        Text(value, style: TextStyle(color: Colors.white, fontSize: 18)),
+        Text(label, style: const TextStyle(color: Colors.grey)),
+        Text(value, style: const TextStyle(color: Colors.white, fontSize: 18)),
       ],
     );
   }
@@ -79,41 +79,41 @@ class PokemonInfo extends StatelessWidget {
   Color _getTypeColor(String type) {
     switch (type.toLowerCase()) {
       case "normal":
-        return Color(0xFFA8A77A);
+        return const Color(0xFFA8A77A);
       case "fire":
-        return Color(0xFFEE8130);
+        return const Color(0xFFEE8130);
       case "water":
-        return Color(0xFF6390F0);
+        return const Color(0xFF6390F0);
       case "electric":
-        return Color(0xFFF7D02C);
+        return const Color(0xFFF7D02C);
       case "grass":
-        return Color(0xFF7AC74C);
+        return const Color(0xFF7AC74C);
       case "ice":
-        return Color(0xFF96D9D6);
+        return const Color(0xFF96D9D6);
       case "fighting":
-        return Color(0xFFC22E28);
+        return const Color(0xFFC22E28);
       case "poison":
-        return Color(0xFFA33EA1);
+        return const Color(0xFFA33EA1);
       case "ground":
-        return Color(0xFFE2BF65);
+        return const Color(0xFFE2BF65);
       case "flying":
-        return Color(0xFFA98FF3);
+        return const Color(0xFFA98FF3);
       case "psychic":
-        return Color(0xFFF95587);
+        return const Color(0xFFF95587);
       case "bug":
-        return Color(0xFFA6B91A);
+        return const Color(0xFFA6B91A);
       case "rock":
-        return Color(0xFFB6A136);
+        return const Color(0xFFB6A136);
       case "ghost":
-        return Color(0xFF735797);
+        return const Color(0xFF735797);
       case "dragon":
-        return Color(0xFF6F35FC);
+        return const Color(0xFF6F35FC);
       case "dark":
-        return Color(0xFF705746);
+        return const Color(0xFF705746);
       case "steel":
-        return Color(0xFFB7B7CE);
+        return const Color(0xFFB7B7CE);
       case "fairy":
-        return Color(0xFFD685AD);
+        return const Color(0xFFD685AD);
       default:
         return Colors.grey;
     }

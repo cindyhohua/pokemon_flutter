@@ -12,7 +12,7 @@ class PokemonCell extends StatefulWidget {
   final PokemonCellModel pokemon;
   final VoidCallback onTap;
 
-  PokemonCell({required this.pokemon, required this.onTap});
+  const PokemonCell({super.key, required this.pokemon, required this.onTap});
 
   @override
   _PokemonCellState createState() => _PokemonCellState();
@@ -61,10 +61,10 @@ class _PokemonCellState extends State<PokemonCell> {
                 fit: BoxFit.contain,
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(
               widget.pokemon.name,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 shadows: [
                   Shadow(

@@ -64,9 +64,9 @@ class PokemonData {
     return PokemonData(
       species: json['species'] != null ? PokemonListItem.fromJson(json['species']) : null,
       sprites: json['sprites'] != null ? Sprites.fromJson(json['sprites']) : null,
-      height: json['height'] != null ? json['height'] : null,
-      weight: json['weight'] != null ? json['weight'] : null,
-      baseExperience: json['base_experience'] != null ? json['base_experience'] : null,
+      height: json['height'],
+      weight: json['weight'],
+      baseExperience: json['base_experience'],
       stats: (json['stats'] as List)
           .map((item) => Stats.fromJson(item))
           .toList(),
@@ -88,7 +88,7 @@ class Types {
 
   factory Types.fromJson(Map<String, dynamic> json) {
     return Types(
-      slot: json['slot'] != null ? json['slot'] : null,
+      slot: json['slot'],
       type: json['type'] != null ? PokemonListItem.fromJson(json['type']) : null,
     );
   }
@@ -107,8 +107,8 @@ class Stats {
 
   factory Stats.fromJson(Map<String, dynamic> json) {
     return Stats(
-      baseStat: json['base_stat'] != null ? json['base_stat'] : null,
-      effort: json['effort'] != null ? json['effort'] : null,
+      baseStat: json['base_stat'],
+      effort: json['effort'],
       stats: json['stats'] != null ? PokemonListItem.fromJson(json['stats']) : null,
     );
   }

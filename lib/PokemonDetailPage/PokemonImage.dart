@@ -4,7 +4,7 @@ import 'package:palette_generator/palette_generator.dart';
 class PokemonImage extends StatefulWidget {
   final String imageUrl;
 
-  PokemonImage({required this.imageUrl});
+  const PokemonImage({super.key, required this.imageUrl});
 
   @override
   _PokemonImageState createState() => _PokemonImageState();
@@ -30,7 +30,7 @@ class _PokemonImageState extends State<PokemonImage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 200,
       child: Center(
         child: ClipOval(

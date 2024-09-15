@@ -7,7 +7,7 @@ class PokemonBaseStats extends StatelessWidget {
   final int spd;
   final int exp;
 
-  PokemonBaseStats({
+  const PokemonBaseStats({super.key, 
     required this.hp,
     required this.atk,
     required this.def,
@@ -22,7 +22,7 @@ class PokemonBaseStats extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
+          const Text(
             "Base Stats", 
             style: TextStyle(
               fontWeight: FontWeight.bold,
@@ -30,7 +30,7 @@ class PokemonBaseStats extends StatelessWidget {
               fontSize: 24
               )
             ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           _buildStatBar("HP", hp, 300, Colors.red),
           _buildStatBar("ATK", atk, 300, Colors.orange),
           _buildStatBar("DEF", def, 300, Colors.blue),
@@ -46,10 +46,10 @@ class PokemonBaseStats extends StatelessWidget {
       children: [
         SizedBox(
           width: 50,
-          child: Text(label, style: TextStyle(color: Colors.white)),
+          child: Text(label, style: const TextStyle(color: Colors.white)),
         ),
         Expanded(
-          child: Container(
+          child: SizedBox(
             height: 10, 
             child: LinearProgressIndicator(
               value: value / maxValue,
@@ -58,8 +58,14 @@ class PokemonBaseStats extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(width: 10),
-        Text("$value/$maxValue", style: TextStyle(color: Colors.white)),
+        SizedBox(
+          width: 80,
+          child: Text(
+            "$value/$maxValue", 
+            style: const TextStyle(color: Colors.white), 
+            textAlign: TextAlign.end,
+            ),
+        )
       ],
     );
   }
