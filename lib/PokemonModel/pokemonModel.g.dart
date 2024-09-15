@@ -84,7 +84,7 @@ Map<String, dynamic> _$$TypesImplToJson(_$TypesImpl instance) =>
     };
 
 _$StatsImpl _$$StatsImplFromJson(Map<String, dynamic> json) => _$StatsImpl(
-      baseStat: (json['baseStat'] as num?)?.toInt(),
+      baseStat: (json['base_stat'] as num?)?.toInt(),
       effort: (json['effort'] as num?)?.toInt(),
       stats: json['stats'] == null
           ? null
@@ -93,35 +93,35 @@ _$StatsImpl _$$StatsImplFromJson(Map<String, dynamic> json) => _$StatsImpl(
 
 Map<String, dynamic> _$$StatsImplToJson(_$StatsImpl instance) =>
     <String, dynamic>{
-      'baseStat': instance.baseStat,
+      'base_stat': instance.baseStat,
       'effort': instance.effort,
       'stats': instance.stats,
     };
 
 _$SpritesImpl _$$SpritesImplFromJson(Map<String, dynamic> json) =>
     _$SpritesImpl(
-      front: json['front'] as String,
-      frontShiny: json['frontShiny'] as String,
-      back: json['back'] as String,
-      backShiny: json['backShiny'] as String,
+      front: json['front_default'] as String,
+      frontShiny: json['front_shiny'] as String,
+      back: json['back_default'] as String,
+      backShiny: json['back_shiny'] as String,
     );
 
 Map<String, dynamic> _$$SpritesImplToJson(_$SpritesImpl instance) =>
     <String, dynamic>{
-      'front': instance.front,
-      'frontShiny': instance.frontShiny,
-      'back': instance.back,
-      'backShiny': instance.backShiny,
+      'front_default': instance.front,
+      'front_shiny': instance.frontShiny,
+      'back_default': instance.back,
+      'back_shiny': instance.backShiny,
     };
 
 _$PokemonBerryImpl _$$PokemonBerryImplFromJson(Map<String, dynamic> json) =>
     _$PokemonBerryImpl(
-      growthTime: (json['growthTime'] as num).toInt(),
+      growthTime: (json['growth_time'] as num).toInt(),
       name: json['name'] as String,
     );
 
 Map<String, dynamic> _$$PokemonBerryImplToJson(_$PokemonBerryImpl instance) =>
     <String, dynamic>{
-      'growthTime': instance.growthTime,
+      'growth_time': instance.growthTime,
       'name': instance.name,
     };

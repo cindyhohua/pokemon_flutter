@@ -926,6 +926,7 @@ Stats _$StatsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Stats {
+  @JsonKey(name: 'base_stat')
   int? get baseStat => throw _privateConstructorUsedError;
   int? get effort => throw _privateConstructorUsedError;
   PokemonListItem? get stats => throw _privateConstructorUsedError;
@@ -944,7 +945,10 @@ abstract class $StatsCopyWith<$Res> {
   factory $StatsCopyWith(Stats value, $Res Function(Stats) then) =
       _$StatsCopyWithImpl<$Res, Stats>;
   @useResult
-  $Res call({int? baseStat, int? effort, PokemonListItem? stats});
+  $Res call(
+      {@JsonKey(name: 'base_stat') int? baseStat,
+      int? effort,
+      PokemonListItem? stats});
 
   $PokemonListItemCopyWith<$Res>? get stats;
 }
@@ -1006,7 +1010,10 @@ abstract class _$$StatsImplCopyWith<$Res> implements $StatsCopyWith<$Res> {
       __$$StatsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? baseStat, int? effort, PokemonListItem? stats});
+  $Res call(
+      {@JsonKey(name: 'base_stat') int? baseStat,
+      int? effort,
+      PokemonListItem? stats});
 
   @override
   $PokemonListItemCopyWith<$Res>? get stats;
@@ -1049,12 +1056,14 @@ class __$$StatsImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$StatsImpl implements _Stats {
-  _$StatsImpl({this.baseStat, this.effort, this.stats});
+  _$StatsImpl(
+      {@JsonKey(name: 'base_stat') this.baseStat, this.effort, this.stats});
 
   factory _$StatsImpl.fromJson(Map<String, dynamic> json) =>
       _$$StatsImplFromJson(json);
 
   @override
+  @JsonKey(name: 'base_stat')
   final int? baseStat;
   @override
   final int? effort;
@@ -1099,13 +1108,14 @@ class _$StatsImpl implements _Stats {
 
 abstract class _Stats implements Stats {
   factory _Stats(
-      {final int? baseStat,
+      {@JsonKey(name: 'base_stat') final int? baseStat,
       final int? effort,
       final PokemonListItem? stats}) = _$StatsImpl;
 
   factory _Stats.fromJson(Map<String, dynamic> json) = _$StatsImpl.fromJson;
 
   @override
+  @JsonKey(name: 'base_stat')
   int? get baseStat;
   @override
   int? get effort;
@@ -1126,9 +1136,13 @@ Sprites _$SpritesFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Sprites {
+  @JsonKey(name: 'front_default')
   String get front => throw _privateConstructorUsedError;
+  @JsonKey(name: 'front_shiny')
   String get frontShiny => throw _privateConstructorUsedError;
+  @JsonKey(name: 'back_default')
   String get back => throw _privateConstructorUsedError;
+  @JsonKey(name: 'back_shiny')
   String get backShiny => throw _privateConstructorUsedError;
 
   /// Serializes this Sprites to a JSON map.
@@ -1145,7 +1159,11 @@ abstract class $SpritesCopyWith<$Res> {
   factory $SpritesCopyWith(Sprites value, $Res Function(Sprites) then) =
       _$SpritesCopyWithImpl<$Res, Sprites>;
   @useResult
-  $Res call({String front, String frontShiny, String back, String backShiny});
+  $Res call(
+      {@JsonKey(name: 'front_default') String front,
+      @JsonKey(name: 'front_shiny') String frontShiny,
+      @JsonKey(name: 'back_default') String back,
+      @JsonKey(name: 'back_shiny') String backShiny});
 }
 
 /// @nodoc
@@ -1196,7 +1214,11 @@ abstract class _$$SpritesImplCopyWith<$Res> implements $SpritesCopyWith<$Res> {
       __$$SpritesImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String front, String frontShiny, String back, String backShiny});
+  $Res call(
+      {@JsonKey(name: 'front_default') String front,
+      @JsonKey(name: 'front_shiny') String frontShiny,
+      @JsonKey(name: 'back_default') String back,
+      @JsonKey(name: 'back_shiny') String backShiny});
 }
 
 /// @nodoc
@@ -1242,21 +1264,25 @@ class __$$SpritesImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SpritesImpl implements _Sprites {
   _$SpritesImpl(
-      {required this.front,
-      required this.frontShiny,
-      required this.back,
-      required this.backShiny});
+      {@JsonKey(name: 'front_default') required this.front,
+      @JsonKey(name: 'front_shiny') required this.frontShiny,
+      @JsonKey(name: 'back_default') required this.back,
+      @JsonKey(name: 'back_shiny') required this.backShiny});
 
   factory _$SpritesImpl.fromJson(Map<String, dynamic> json) =>
       _$$SpritesImplFromJson(json);
 
   @override
+  @JsonKey(name: 'front_default')
   final String front;
   @override
+  @JsonKey(name: 'front_shiny')
   final String frontShiny;
   @override
+  @JsonKey(name: 'back_default')
   final String back;
   @override
+  @JsonKey(name: 'back_shiny')
   final String backShiny;
 
   @override
@@ -1300,20 +1326,25 @@ class _$SpritesImpl implements _Sprites {
 
 abstract class _Sprites implements Sprites {
   factory _Sprites(
-      {required final String front,
-      required final String frontShiny,
-      required final String back,
-      required final String backShiny}) = _$SpritesImpl;
+          {@JsonKey(name: 'front_default') required final String front,
+          @JsonKey(name: 'front_shiny') required final String frontShiny,
+          @JsonKey(name: 'back_default') required final String back,
+          @JsonKey(name: 'back_shiny') required final String backShiny}) =
+      _$SpritesImpl;
 
   factory _Sprites.fromJson(Map<String, dynamic> json) = _$SpritesImpl.fromJson;
 
   @override
+  @JsonKey(name: 'front_default')
   String get front;
   @override
+  @JsonKey(name: 'front_shiny')
   String get frontShiny;
   @override
+  @JsonKey(name: 'back_default')
   String get back;
   @override
+  @JsonKey(name: 'back_shiny')
   String get backShiny;
 
   /// Create a copy of Sprites
@@ -1330,6 +1361,7 @@ PokemonBerry _$PokemonBerryFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PokemonBerry {
+  @JsonKey(name: 'growth_time')
   int get growthTime => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
@@ -1349,7 +1381,7 @@ abstract class $PokemonBerryCopyWith<$Res> {
           PokemonBerry value, $Res Function(PokemonBerry) then) =
       _$PokemonBerryCopyWithImpl<$Res, PokemonBerry>;
   @useResult
-  $Res call({int growthTime, String name});
+  $Res call({@JsonKey(name: 'growth_time') int growthTime, String name});
 }
 
 /// @nodoc
@@ -1391,7 +1423,7 @@ abstract class _$$PokemonBerryImplCopyWith<$Res>
       __$$PokemonBerryImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int growthTime, String name});
+  $Res call({@JsonKey(name: 'growth_time') int growthTime, String name});
 }
 
 /// @nodoc
@@ -1426,12 +1458,15 @@ class __$$PokemonBerryImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PokemonBerryImpl implements _PokemonBerry {
-  _$PokemonBerryImpl({required this.growthTime, required this.name});
+  _$PokemonBerryImpl(
+      {@JsonKey(name: 'growth_time') required this.growthTime,
+      required this.name});
 
   factory _$PokemonBerryImpl.fromJson(Map<String, dynamic> json) =>
       _$$PokemonBerryImplFromJson(json);
 
   @override
+  @JsonKey(name: 'growth_time')
   final int growthTime;
   @override
   final String name;
@@ -1473,13 +1508,14 @@ class _$PokemonBerryImpl implements _PokemonBerry {
 
 abstract class _PokemonBerry implements PokemonBerry {
   factory _PokemonBerry(
-      {required final int growthTime,
+      {@JsonKey(name: 'growth_time') required final int growthTime,
       required final String name}) = _$PokemonBerryImpl;
 
   factory _PokemonBerry.fromJson(Map<String, dynamic> json) =
       _$PokemonBerryImpl.fromJson;
 
   @override
+  @JsonKey(name: 'growth_time')
   int get growthTime;
   @override
   String get name;

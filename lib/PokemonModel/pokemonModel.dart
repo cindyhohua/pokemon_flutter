@@ -56,7 +56,7 @@ class Types with _$Types {
 @freezed
 class Stats with _$Stats {
   factory Stats({
-    int? baseStat,
+    @JsonKey(name: 'base_stat') int? baseStat,
     int? effort,
     PokemonListItem? stats,
   }) = _Stats;
@@ -67,19 +67,21 @@ class Stats with _$Stats {
 @freezed
 class Sprites with _$Sprites {
   factory Sprites({
-    required String front,
-    required String frontShiny,
-    required String back,
-    required String backShiny,
+    @JsonKey(name: 'front_default') required String front,  
+    @JsonKey(name: 'front_shiny') required String frontShiny,
+    @JsonKey(name: 'back_default') required String back, 
+    @JsonKey(name: 'back_shiny') required String backShiny,
   }) = _Sprites;
 
-  factory Sprites.fromJson(Map<String, dynamic> json) => _$SpritesFromJson(json);
+  factory Sprites.fromJson(Map<String, dynamic> json) =>
+      _$SpritesFromJson(json);
 }
+
 
 @freezed
 class PokemonBerry with _$PokemonBerry {
   factory PokemonBerry({
-    required int growthTime,
+    @JsonKey(name: 'growth_time') required int growthTime,
     required String name,
   }) = _PokemonBerry;
 

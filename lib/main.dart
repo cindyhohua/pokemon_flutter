@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'pokemonService.dart';
 import 'PokemonDetailPage/pokemonDetail.dart';
-import 'pokemonModel.dart';
+import 'PokemonModel/pokemonModel.dart';
 import 'pokemonCell.dart';
 
 void main() {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../pokemonService.dart';
-import '../pokemonModel.dart';
+import '../PokemonModel/pokemonModel.dart';
 import '../PokemonDetailPage/pokemonImage.dart';
 import '../PokemonDetailPage/pokemonInfo.dart';
 import '../PokemonDetailPage/pokemonBaseStats.dart';
