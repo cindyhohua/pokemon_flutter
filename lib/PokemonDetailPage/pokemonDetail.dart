@@ -1,44 +1,25 @@
 import 'package:flutter/material.dart';
-import '../pokemonService.dart';
-import '../PokemonModel/pokemonModel.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../pokemonProvider.dart';
 import '../PokemonDetailPage/pokemonImage.dart';
 import '../PokemonDetailPage/pokemonInfo.dart';
 import '../PokemonDetailPage/pokemonBaseStats.dart';
 
-class PokemonDetailPage extends StatefulWidget {
+class PokemonDetailPage extends ConsumerWidget {
   final String name;
 
   const PokemonDetailPage({super.key, required this.name});
 
   @override
-  _PokemonDetailPageState createState() => _PokemonDetailPageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    // 使用 ref.watch 來監聽 pokemonProvider 的資料
+    final pokemonAsyncValue = ref.watch(pokemonProvider(name));
 
-class _PokemonDetailPageState extends State<PokemonDetailPage> {
-  late Future<PokemonData> _pokemonData;
-
-  @override
-  void initState() {
-    super.initState();
-    _pokemonData = _loadPokemonData(widget.name);
-  }
-
-  Future<PokemonData> _loadPokemonData(String name) async {
-    try {
-      return await PokemonService().getPokemon(pokemon: name);
-    } catch (e) {
-      print('就決定是你了...誒等等: $e');
-      throw Exception('就決定是你了...誒等等');
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text(
-          widget.name.toUpperCase(),
+          name.toUpperCase(),
           style: const TextStyle(
             color: Colors.white,
             fontSize: 25,
@@ -48,48 +29,35 @@ class _PokemonDetailPageState extends State<PokemonDetailPage> {
         backgroundColor: Colors.red,
         centerTitle: true,
       ),
-      body: FutureBuilder<PokemonData>(
-        future: _pokemonData,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (snapshot.hasError) {
-            print(snapshot.error.toString());
-            return Center(
-              child: Text('Error: ${snapshot.error}'),
-            );
-          } else if (snapshot.hasData) {
-            final pokemon = snapshot.data!;
-            return SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  PokemonImage(imageUrl: pokemon.sprites?.front ?? ''),
-                  PokemonInfo(
-                    name: pokemon.species?.name ?? '',
-                    type1: pokemon.types?[0].type?.name ?? '',
-                    type2: (pokemon.types?.length ?? 0) > 1 ? (pokemon.types?[1].type?.name ?? '') : '',
-                    weight: (pokemon.weight?.toDouble() ?? 0) / 10, 
-                    height: (pokemon.height?.toDouble() ?? 0) / 10, 
-                  ),
-                  PokemonBaseStats(
-                    hp: pokemon.stats?[0].baseStat ?? 0,
-                    atk: pokemon.stats?[1].baseStat ?? 0,
-                    def: pokemon.stats?[2].baseStat ?? 0,
-                    spd: pokemon.stats?[5].baseStat ?? 0,
-                    exp: pokemon.baseExperience ?? 0,
-                  ),
-                ],
+      body: pokemonAsyncValue.when(
+        data: (pokemon) => SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              PokemonImage(imageUrl: pokemon.sprites?.front ?? ''),
+              PokemonInfo(
+                name: pokemon.species?.name ?? '',
+                type1: pokemon.types?[0].type?.name ?? '',
+                type2: (pokemon.types?.length ?? 0) > 1 ? (pokemon.types?[1].type?.name ?? '') : '',
+                weight: (pokemon.weight?.toDouble() ?? 0) / 10,
+                height: (pokemon.height?.toDouble() ?? 0) / 10,
               ),
-            );
-          } else {
-            return const Center(
-              child: Text('No data available'),
-            );
-          }
-        },
+              PokemonBaseStats(
+                hp: pokemon.stats?[0].baseStat ?? 0,
+                atk: pokemon.stats?[1].baseStat ?? 0,
+                def: pokemon.stats?[2].baseStat ?? 0,
+                spd: pokemon.stats?[5].baseStat ?? 0,
+                exp: pokemon.baseExperience ?? 0,
+              ),
+            ],
+          ),
+        ),
+        loading: () => const Center(
+          child: CircularProgressIndicator(),
+        ),
+        error: (error, stackTrace) => Center(
+          child: Text('Error: $error'),
+        ),
       ),
     );
   }
