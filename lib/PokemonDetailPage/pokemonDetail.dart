@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokemon_flutter/PokemonModel/pokemonModel.dart';
-import 'package:pokemon_flutter/main.dart';
 import '../pokemonProvider.dart';
 import '../PokemonDetailPage/pokemonImage.dart';
 import '../PokemonDetailPage/pokemonInfo.dart';
