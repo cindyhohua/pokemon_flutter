@@ -117,9 +117,9 @@ class _PokemonListPageState extends State<PokemonListPage> {
       });
     } catch (e) {
       print('Error loading Pokemon list: $e');
-      setState(() {
-        _isLoading = false;
-      });
+      // setState(() {
+      //   _isLoading = false;
+      // });
     }
   }
 

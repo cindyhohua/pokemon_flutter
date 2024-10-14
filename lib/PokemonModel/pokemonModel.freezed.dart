@@ -750,7 +750,7 @@ Types _$TypesFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Types {
   int? get slot => throw _privateConstructorUsedError;
-  PokemonListItem? get type => throw _privateConstructorUsedError;
+  PokemonTypeData? get type => throw _privateConstructorUsedError;
 
   /// Serializes this Types to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -766,9 +766,9 @@ abstract class $TypesCopyWith<$Res> {
   factory $TypesCopyWith(Types value, $Res Function(Types) then) =
       _$TypesCopyWithImpl<$Res, Types>;
   @useResult
-  $Res call({int? slot, PokemonListItem? type});
+  $Res call({int? slot, PokemonTypeData? type});
 
-  $PokemonListItemCopyWith<$Res>? get type;
+  $PokemonTypeDataCopyWith<$Res>? get type;
 }
 
 /// @nodoc
@@ -797,7 +797,7 @@ class _$TypesCopyWithImpl<$Res, $Val extends Types>
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as PokemonListItem?,
+              as PokemonTypeData?,
     ) as $Val);
   }
 
@@ -805,12 +805,12 @@ class _$TypesCopyWithImpl<$Res, $Val extends Types>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $PokemonListItemCopyWith<$Res>? get type {
+  $PokemonTypeDataCopyWith<$Res>? get type {
     if (_value.type == null) {
       return null;
     }
 
-    return $PokemonListItemCopyWith<$Res>(_value.type!, (value) {
+    return $PokemonTypeDataCopyWith<$Res>(_value.type!, (value) {
       return _then(_value.copyWith(type: value) as $Val);
     });
   }
@@ -823,10 +823,10 @@ abstract class _$$TypesImplCopyWith<$Res> implements $TypesCopyWith<$Res> {
       __$$TypesImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? slot, PokemonListItem? type});
+  $Res call({int? slot, PokemonTypeData? type});
 
   @override
-  $PokemonListItemCopyWith<$Res>? get type;
+  $PokemonTypeDataCopyWith<$Res>? get type;
 }
 
 /// @nodoc
@@ -853,7 +853,7 @@ class __$$TypesImplCopyWithImpl<$Res>
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as PokemonListItem?,
+              as PokemonTypeData?,
     ));
   }
 }
@@ -869,7 +869,7 @@ class _$TypesImpl implements _Types {
   @override
   final int? slot;
   @override
-  final PokemonListItem? type;
+  final PokemonTypeData? type;
 
   @override
   String toString() {
@@ -906,20 +906,187 @@ class _$TypesImpl implements _Types {
 }
 
 abstract class _Types implements Types {
-  factory _Types({final int? slot, final PokemonListItem? type}) = _$TypesImpl;
+  factory _Types({final int? slot, final PokemonTypeData? type}) = _$TypesImpl;
 
   factory _Types.fromJson(Map<String, dynamic> json) = _$TypesImpl.fromJson;
 
   @override
   int? get slot;
   @override
-  PokemonListItem? get type;
+  PokemonTypeData? get type;
 
   /// Create a copy of Types
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TypesImplCopyWith<_$TypesImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+PokemonTypeData _$PokemonTypeDataFromJson(Map<String, dynamic> json) {
+  return _PokemonTypeData.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PokemonTypeData {
+  PokemonType? get name => throw _privateConstructorUsedError;
+  String? get url => throw _privateConstructorUsedError;
+
+  /// Serializes this PokemonTypeData to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of PokemonTypeData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $PokemonTypeDataCopyWith<PokemonTypeData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PokemonTypeDataCopyWith<$Res> {
+  factory $PokemonTypeDataCopyWith(
+          PokemonTypeData value, $Res Function(PokemonTypeData) then) =
+      _$PokemonTypeDataCopyWithImpl<$Res, PokemonTypeData>;
+  @useResult
+  $Res call({PokemonType? name, String? url});
+}
+
+/// @nodoc
+class _$PokemonTypeDataCopyWithImpl<$Res, $Val extends PokemonTypeData>
+    implements $PokemonTypeDataCopyWith<$Res> {
+  _$PokemonTypeDataCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of PokemonTypeData
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? url = freezed,
+  }) {
+    return _then(_value.copyWith(
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as PokemonType?,
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$PokemonTypeDataImplCopyWith<$Res>
+    implements $PokemonTypeDataCopyWith<$Res> {
+  factory _$$PokemonTypeDataImplCopyWith(_$PokemonTypeDataImpl value,
+          $Res Function(_$PokemonTypeDataImpl) then) =
+      __$$PokemonTypeDataImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({PokemonType? name, String? url});
+}
+
+/// @nodoc
+class __$$PokemonTypeDataImplCopyWithImpl<$Res>
+    extends _$PokemonTypeDataCopyWithImpl<$Res, _$PokemonTypeDataImpl>
+    implements _$$PokemonTypeDataImplCopyWith<$Res> {
+  __$$PokemonTypeDataImplCopyWithImpl(
+      _$PokemonTypeDataImpl _value, $Res Function(_$PokemonTypeDataImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of PokemonTypeData
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? url = freezed,
+  }) {
+    return _then(_$PokemonTypeDataImpl(
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as PokemonType?,
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$PokemonTypeDataImpl implements _PokemonTypeData {
+  _$PokemonTypeDataImpl({this.name, this.url});
+
+  factory _$PokemonTypeDataImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PokemonTypeDataImplFromJson(json);
+
+  @override
+  final PokemonType? name;
+  @override
+  final String? url;
+
+  @override
+  String toString() {
+    return 'PokemonTypeData(name: $name, url: $url)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PokemonTypeDataImpl &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.url, url) || other.url == url));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, name, url);
+
+  /// Create a copy of PokemonTypeData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PokemonTypeDataImplCopyWith<_$PokemonTypeDataImpl> get copyWith =>
+      __$$PokemonTypeDataImplCopyWithImpl<_$PokemonTypeDataImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PokemonTypeDataImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _PokemonTypeData implements PokemonTypeData {
+  factory _PokemonTypeData({final PokemonType? name, final String? url}) =
+      _$PokemonTypeDataImpl;
+
+  factory _PokemonTypeData.fromJson(Map<String, dynamic> json) =
+      _$PokemonTypeDataImpl.fromJson;
+
+  @override
+  PokemonType? get name;
+  @override
+  String? get url;
+
+  /// Create a copy of PokemonTypeData
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PokemonTypeDataImplCopyWith<_$PokemonTypeDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

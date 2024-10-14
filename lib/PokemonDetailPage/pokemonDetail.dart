@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pokemon_flutter/PokemonModel/pokemonModel.dart';
+import 'package:pokemon_flutter/main.dart';
 import '../pokemonProvider.dart';
 import '../PokemonDetailPage/pokemonImage.dart';
 import '../PokemonDetailPage/pokemonInfo.dart';
@@ -37,8 +39,8 @@ class PokemonDetailPage extends ConsumerWidget {
               PokemonImage(imageUrl: pokemon.sprites?.front ?? ''),
               PokemonInfo(
                 name: pokemon.species?.name ?? '',
-                type1: pokemon.types?[0].type?.name ?? '',
-                type2: (pokemon.types?.length ?? 0) > 1 ? (pokemon.types?[1].type?.name ?? '') : '',
+                type1: pokemon.types?[0].type?.name?.getName ?? '',
+                type2: (pokemon.types?.length ?? 0) > 1 ? (pokemon.types?[1].type?.name?.getName ?? '') : '',
                 weight: (pokemon.weight?.toDouble() ?? 0) / 10,
                 height: (pokemon.height?.toDouble() ?? 0) / 10,
               ),

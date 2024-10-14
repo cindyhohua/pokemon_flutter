@@ -23,7 +23,6 @@ class PokemonService {
   Future<PokemonData> getPokemon({required String pokemon}) async {
     try {
       final response = await _dio.get('pokemon/$pokemon');   
-      print(response.data);
       return PokemonData.fromJson(response.data);
 
 

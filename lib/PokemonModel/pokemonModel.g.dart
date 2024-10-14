@@ -74,7 +74,7 @@ _$TypesImpl _$$TypesImplFromJson(Map<String, dynamic> json) => _$TypesImpl(
       slot: (json['slot'] as num?)?.toInt(),
       type: json['type'] == null
           ? null
-          : PokemonListItem.fromJson(json['type'] as Map<String, dynamic>),
+          : PokemonTypeData.fromJson(json['type'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$TypesImplToJson(_$TypesImpl instance) =>
@@ -82,6 +82,41 @@ Map<String, dynamic> _$$TypesImplToJson(_$TypesImpl instance) =>
       'slot': instance.slot,
       'type': instance.type,
     };
+
+_$PokemonTypeDataImpl _$$PokemonTypeDataImplFromJson(
+        Map<String, dynamic> json) =>
+    _$PokemonTypeDataImpl(
+      name: $enumDecodeNullable(_$PokemonTypeEnumMap, json['name']),
+      url: json['url'] as String?,
+    );
+
+Map<String, dynamic> _$$PokemonTypeDataImplToJson(
+        _$PokemonTypeDataImpl instance) =>
+    <String, dynamic>{
+      'name': _$PokemonTypeEnumMap[instance.name],
+      'url': instance.url,
+    };
+
+const _$PokemonTypeEnumMap = {
+  PokemonType.normal: 'normal',
+  PokemonType.fire: 'fire',
+  PokemonType.water: 'water',
+  PokemonType.electric: 'electric',
+  PokemonType.grass: 'grass',
+  PokemonType.ice: 'ice',
+  PokemonType.fighting: 'fighting',
+  PokemonType.poison: 'poison',
+  PokemonType.ground: 'ground',
+  PokemonType.flying: 'flying',
+  PokemonType.psychic: 'psychic',
+  PokemonType.bug: 'bug',
+  PokemonType.rock: 'rock',
+  PokemonType.ghost: 'ghost',
+  PokemonType.dragon: 'dragon',
+  PokemonType.dark: 'dark',
+  PokemonType.steel: 'steel',
+  PokemonType.fairy: 'fairy',
+};
 
 _$StatsImpl _$$StatsImplFromJson(Map<String, dynamic> json) => _$StatsImpl(
       baseStat: (json['base_stat'] as num?)?.toInt(),
