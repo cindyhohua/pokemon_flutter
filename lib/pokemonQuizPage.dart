@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokemon_flutter/PokemonModel/pokemonModel.dart';
@@ -21,6 +19,7 @@ class _PokemonQuizPageState extends ConsumerState<PokemonQuizPage> {
   final List<bool> _selectedTypes = List.generate(PokemonType.values.length, (index) => false);
   final Random _random = Random();
   int _randomPokemonId = 1; 
+  List<PokemonType> correctTypes = List.empty();
 
   @override
   void initState() {
@@ -36,14 +35,6 @@ class _PokemonQuizPageState extends ConsumerState<PokemonQuizPage> {
 
 void _submitSelection() {
   final pokemonAsyncValue = ref.watch(pokemonProvider(_randomPokemonId.toString()));
-  
-  pokemonAsyncValue.when(
-    data: (pokemonData) {
-      List<PokemonType> correctTypes = pokemonData.types
-          ?.map((type) => type.type?.name)
-          .whereType<PokemonType>()
-          .toList() ?? [];
-
       List<PokemonType> selectedTypes = [];
       for (int i = 0; i < _types.length; i++) {
         if (_selectedTypes[i]) {
@@ -68,14 +59,6 @@ void _submitSelection() {
       setState(() {
         _selectedTypes.fillRange(0, _selectedTypes.length, false);
       }); 
-    },
-    loading: () {},
-    error: (error, stack) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: $error')),
-      );
-    },
-  );
 }
 
 
@@ -83,6 +66,20 @@ void _submitSelection() {
   Widget build(BuildContext context) {
   final pokemonAsyncValue = ref.watch(pokemonProvider(_randomPokemonId.toString()));
 
+ pokemonAsyncValue.when(
+    data: (pokemonData) {
+      correctTypes = pokemonData.types
+          ?.map((type) => type.type?.name)
+          .whereType<PokemonType>()
+          .toList() ?? [];
+    },
+    loading: () {},
+    error: (error, stack) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: $error')),
+      );
+    },
+ );
   return Scaffold(
     appBar: AppBar(
       title: pokemonAsyncValue.when(
@@ -105,6 +102,7 @@ void _submitSelection() {
                   pokemonData.sprites?.front ?? '',
                   height: 200,
                   width: 200,
+                  fit: BoxFit.fill,
                 ),
               ],
             ),
