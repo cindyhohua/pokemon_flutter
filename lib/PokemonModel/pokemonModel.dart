@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -31,6 +33,7 @@ class PokemonListItem with _$PokemonListItem {
 @freezed
 class PokemonData with _$PokemonData {
   factory PokemonData({
+    int? id,
     PokemonListItem? species,
     Sprites? sprites,
     int? height,

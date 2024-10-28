@@ -411,6 +411,7 @@ PokemonData _$PokemonDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PokemonData {
+  int? get id => throw _privateConstructorUsedError;
   PokemonListItem? get species => throw _privateConstructorUsedError;
   Sprites? get sprites => throw _privateConstructorUsedError;
   int? get height => throw _privateConstructorUsedError;
@@ -437,7 +438,8 @@ abstract class $PokemonDataCopyWith<$Res> {
       _$PokemonDataCopyWithImpl<$Res, PokemonData>;
   @useResult
   $Res call(
-      {PokemonListItem? species,
+      {int? id,
+      PokemonListItem? species,
       Sprites? sprites,
       int? height,
       int? weight,
@@ -464,6 +466,7 @@ class _$PokemonDataCopyWithImpl<$Res, $Val extends PokemonData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? species = freezed,
     Object? sprites = freezed,
     Object? height = freezed,
@@ -473,6 +476,10 @@ class _$PokemonDataCopyWithImpl<$Res, $Val extends PokemonData>
     Object? types = freezed,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       species: freezed == species
           ? _value.species
           : species // ignore: cast_nullable_to_non_nullable
@@ -542,7 +549,8 @@ abstract class _$$PokemonDataImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {PokemonListItem? species,
+      {int? id,
+      PokemonListItem? species,
       Sprites? sprites,
       int? height,
       int? weight,
@@ -569,6 +577,7 @@ class __$$PokemonDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? species = freezed,
     Object? sprites = freezed,
     Object? height = freezed,
@@ -578,6 +587,10 @@ class __$$PokemonDataImplCopyWithImpl<$Res>
     Object? types = freezed,
   }) {
     return _then(_$PokemonDataImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       species: freezed == species
           ? _value.species
           : species // ignore: cast_nullable_to_non_nullable
@@ -614,7 +627,8 @@ class __$$PokemonDataImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PokemonDataImpl implements _PokemonData {
   _$PokemonDataImpl(
-      {this.species,
+      {this.id,
+      this.species,
       this.sprites,
       this.height,
       this.weight,
@@ -627,6 +641,8 @@ class _$PokemonDataImpl implements _PokemonData {
   factory _$PokemonDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$PokemonDataImplFromJson(json);
 
+  @override
+  final int? id;
   @override
   final PokemonListItem? species;
   @override
@@ -660,7 +676,7 @@ class _$PokemonDataImpl implements _PokemonData {
 
   @override
   String toString() {
-    return 'PokemonData(species: $species, sprites: $sprites, height: $height, weight: $weight, baseExperience: $baseExperience, stats: $stats, types: $types)';
+    return 'PokemonData(id: $id, species: $species, sprites: $sprites, height: $height, weight: $weight, baseExperience: $baseExperience, stats: $stats, types: $types)';
   }
 
   @override
@@ -668,6 +684,7 @@ class _$PokemonDataImpl implements _PokemonData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PokemonDataImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.species, species) || other.species == species) &&
             (identical(other.sprites, sprites) || other.sprites == sprites) &&
             (identical(other.height, height) || other.height == height) &&
@@ -682,6 +699,7 @@ class _$PokemonDataImpl implements _PokemonData {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      id,
       species,
       sprites,
       height,
@@ -708,7 +726,8 @@ class _$PokemonDataImpl implements _PokemonData {
 
 abstract class _PokemonData implements PokemonData {
   factory _PokemonData(
-      {final PokemonListItem? species,
+      {final int? id,
+      final PokemonListItem? species,
       final Sprites? sprites,
       final int? height,
       final int? weight,
@@ -719,6 +738,8 @@ abstract class _PokemonData implements PokemonData {
   factory _PokemonData.fromJson(Map<String, dynamic> json) =
       _$PokemonDataImpl.fromJson;
 
+  @override
+  int? get id;
   @override
   PokemonListItem? get species;
   @override

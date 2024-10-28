@@ -42,6 +42,7 @@ Map<String, dynamic> _$$PokemonListItemImplToJson(
 
 _$PokemonDataImpl _$$PokemonDataImplFromJson(Map<String, dynamic> json) =>
     _$PokemonDataImpl(
+      id: (json['id'] as num?)?.toInt(),
       species: json['species'] == null
           ? null
           : PokemonListItem.fromJson(json['species'] as Map<String, dynamic>),
@@ -61,6 +62,7 @@ _$PokemonDataImpl _$$PokemonDataImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$PokemonDataImplToJson(_$PokemonDataImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'species': instance.species,
       'sprites': instance.sprites,
       'height': instance.height,
