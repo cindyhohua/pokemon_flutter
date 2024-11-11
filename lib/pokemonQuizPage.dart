@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokemon_flutter/PokemonModel/pokemonModel.dart';
@@ -27,7 +29,7 @@ class _PokemonQuizPageState extends ConsumerState<PokemonQuizPage> {
   @override
   void initState() {
     super.initState();
-    realm = Realm(Configuration.local([PokemonQuizData.schema]));
+    realm = Realm(Configuration.local([PokemonQuizData.schema],schemaVersion: 2));
     _initializeData();
   }
 
@@ -46,58 +48,31 @@ class _PokemonQuizPageState extends ConsumerState<PokemonQuizPage> {
     }
   }
 
-
   Future<void> _generateRandomPokemon() async {
-    setState(() {
-      _randomPokemonId = _random.nextInt(151) + 1;
-    });
-
+    _randomPokemonId = _random.nextInt(151) + 1;
     try {
       final pokemonData = await ref.read(pokemonProvider(_randomPokemonId.toString()).future);
-      _addPokemonToRealm(pokemonData);
+      final imageData = await ref.read(imageProvider('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${_randomPokemonId}.png').future);
+      _addPokemonToRealm(pokemonData, imageData);
     } catch (error) {
       if (realm.all<PokemonQuizData>().isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('錯誤: $error')),
         );
       } else {
-        _deleteFirstPokemon();
+        return;
       }
     }
   }
 
-  // void _nextRandomPokemon() async {
-  //   setState(() {
-  //     _randomPokemonId = _random.nextInt(151) + 1;
-  //   });
-
-  //   try {
-  //     final pokemonData = await ref.read(pokemonProvider(_randomPokemonId.toString()).future);
-  //     _nextPokemon(pokemonData);
-  //   } catch (error) {
-      
-  //     if (realm.all<PokemonQuizData>().isNotEmpty) {
-  //       // 使用本地資料，不顯示錯誤
-  //       final oldestPokemon = realm.all<PokemonQuizData>().first;
-  //       _nextPokemonFromRealm(oldestPokemon);
-  //     } else {
-  //       ScaffoldMessenger.of(context).showSnackBar(
-  //         SnackBar(content: Text('錯誤: $error')),
-  //       );
-  //     }
-  //   }
-  // }
-
   void _nextPokemonFromRealm(PokemonQuizData pokemonData) {
-    setState(() {
-      _randomPokemonId = pokemonData.id;
-      correctTypes = pokemonData.types
-          .map((type) => PokemonType.values.firstWhere(
-                (e) => e.toString().split('.').last == type,
-                orElse: () => PokemonType.normal,
-              ))
-          .toList();
-    });
+        _randomPokemonId = pokemonData.id;
+        correctTypes = pokemonData.types
+            .map((type) => PokemonType.values.firstWhere(
+                  (e) => e.toString().split('.').last == type,
+                  orElse: () => PokemonType.normal,
+                ))
+            .toList();
   }
 
   void _deleteFirstPokemon() {
@@ -109,7 +84,7 @@ class _PokemonQuizPageState extends ConsumerState<PokemonQuizPage> {
   }
 }
 
-void _addPokemonToRealm(PokemonData pokemonData) {
+void _addPokemonToRealm(PokemonData pokemonData, Uint8List imageData) {
   final existingPokemon = realm.all<PokemonQuizData>()
       .where((pokemon) => pokemon.id == pokemonData.id)
       .firstOrNull;
@@ -118,6 +93,7 @@ void _addPokemonToRealm(PokemonData pokemonData) {
     final newPokemonData = PokemonQuizData(
       pokemonData.id ?? 0,
       pokemonData.species?.name ?? 'Unknown',
+      imageData,
       types: pokemonData.types
           ?.map((type) => type.type?.name?.getName ?? '')
           .whereType<String>()
@@ -132,6 +108,16 @@ void _addPokemonToRealm(PokemonData pokemonData) {
 
 
 void _submitSelection() {
+  final currentPokemon = realm.all<PokemonQuizData>().firstOrNull; 
+  if (currentPokemon != null) {
+        _randomPokemonId = currentPokemon.id;
+        correctTypes = currentPokemon.types
+            .map((type) => PokemonType.values.firstWhere(
+                  (e) => e.toString().split('.').last == type,
+                  orElse: () => PokemonType.normal,
+                ))
+            .toList();
+  }
       List<PokemonType> selectedTypes = [];
       for (int i = 0; i < _types.length; i++) {
         if (_selectedTypes[i]) {
@@ -145,8 +131,8 @@ void _submitSelection() {
       );
 
       String resultMessage = isEqual
-          ? '完全正確～'
-          : '錯誤。正確屬性: ${correctTypes.join(', ')}';
+          ? 'Thats right!!'
+          : 'Wrong answer! The correct answer is: ${correctTypes.join(', ')}';
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(resultMessage)),
@@ -159,13 +145,9 @@ void _submitSelection() {
       }); 
 }
 
-  @override
+@override
   Widget build(BuildContext context) {
     final currentPokemon = realm.all<PokemonQuizData>().firstOrNull;
-    if (currentPokemon != null) {
-      _nextPokemonFromRealm(currentPokemon);
-    } 
-
     return Scaffold(
       appBar: AppBar(
         title: Text(currentPokemon != null 
@@ -179,20 +161,20 @@ void _submitSelection() {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             if (currentPokemon != null) ...[
-Image.network(
-  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${currentPokemon.id}.png',
-  height: 200,
-  width: 200,
-  fit: BoxFit.fitHeight,
-  errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
-    return Image.asset(
-      'assets/w700d1q75cms.jpg', 
-      height: 200,
-      width: 200,
-      fit: BoxFit.fitHeight,
-    );
-  },
-),
+              Image.memory(
+                currentPokemon.imageData,
+                height: 200,
+                width: 200,
+                fit: BoxFit.fitHeight,
+                errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                      return Image.asset(
+                        'assets/w700d1q75cms.jpg',
+                        height: 200,
+                        width: 200,
+                        fit: BoxFit.fitHeight,
+                      );
+                },
+              ),
               const Text('選擇他的屬性：', style: TextStyle(fontSize: 18)),
               const SizedBox(height: 10),
               Expanded(

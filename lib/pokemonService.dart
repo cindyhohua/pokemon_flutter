@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:dio/dio.dart';
 import 'PokemonModel/pokemonModel.dart';
 
@@ -53,6 +55,16 @@ class PokemonService {
       throw Exception('Failed to load Pokémon berry: ${e.message}');
     }
   }
+
+    Future<Uint8List> downloadImageWithDio(String url) async {
+    try {
+     final response = await Dio().get(url, options: Options(responseType: ResponseType.bytes));
+      return response.data; 
+    } on DioException catch (error) {
+      throw Exception('Failed to load Pokémon berry: ${error.message}');
+    }
+}
+
 }
 
 
