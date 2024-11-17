@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokemon_flutter/PokemonModel/pokemonModel.dart';
 import '../pokemonProvider.dart'; 
 import 'dart:math';
-import '../pokemonTypeSelector.dart';
+import 'pokemonTypeSelector.dart';
 import 'package:collection/collection.dart';
 import 'package:realm/realm.dart';
 import 'pokemonModelRealm.dart';

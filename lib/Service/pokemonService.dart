@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
-import 'PokemonModel/pokemonModel.dart';
+import 'package:pokemon_flutter/PokemonModel/pokemonModel.dart';
 
 class PokemonService {
   static const String baseUrl = 'https://pokeapi.co/api/v2/';
